@@ -13,11 +13,17 @@ import { useNavigate } from 'react-router-dom'
 export default function Register() {
 
   const [isLoading, setIsLoading] = useState(false)
+  const [apiError, setapiError] = useState("")
+
   let navigaite = useNavigate()
 
   async function register(values) {
+    setapiError('')
     setIsLoading(true)
-    let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values).catch(err=>console.log(err));
+    let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values).catch((err)=>{
+      setapiError(err.response.data.message)
+      setIsLoading(false)
+    });
     if (data.message == "success") {
       setIsLoading(false)
       navigaite("/login")
@@ -51,6 +57,7 @@ export default function Register() {
     <>
       <div className="container my-5">
         <h2 className='mb-3'>Register Now</h2>
+        {apiError ? <div className='alert alert-danger'>{apiError}</div> : ""}
         <form className='w-75 mx-auto' onSubmit={formik.handleSubmit}>
           <div className='form-group mb-2'>
             <label htmlFor=""> Name</label>
@@ -77,7 +84,8 @@ export default function Register() {
             <input type="tel" className='form-control' id='phone' name='phone' value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} />
             {formik.errors.phone && formik.touched.phone ? <div className='alert alert-danger'>{formik.errors.phone}</div> : null}
           </div>
-          {isLoading ? <button type='submit' className="btn bg-main d-block text-white ms-auto"><i className='fa fa-spin fa-spinner'></i></button> : <button type='submit' className="btn bg-main d-block text-white ms-auto">Register</button>}
+          {isLoading ? <button type='submit' className="btn bg-main d-block text-white ms-auto"><i className='fa fa-spin fa-spinner'></i></button> 
+          : <button type='submit' className="btn bg-main d-block text-white ms-auto">Register</button>}
 
 
         </form>
