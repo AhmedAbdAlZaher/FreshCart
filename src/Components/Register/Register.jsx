@@ -20,7 +20,7 @@ export default function Register() {
   async function register(values) {
     setapiError('')
     setIsLoading(true)
-    let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values).catch((err)=>{
+    let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values).catch((err)=>{          //values ely 
       setapiError(err.response.data.message)
       setIsLoading(false)
     });
