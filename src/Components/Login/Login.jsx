@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from "./Login.module.css"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { tokenContext } from '../../context/tokenContext'
 
 
 
@@ -13,6 +14,7 @@ import { useFormik } from 'formik'
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const [apiError, setapiError] = useState("")
+  let {setToken}=useContext(tokenContext)
 
   let navigaite = useNavigate()
 
@@ -25,6 +27,8 @@ export default function Login() {
     });
     if (data.message == "success") {
       setIsLoading(false)
+      localStorage.setItem("userToken" , data.token)
+      setToken(data.token)
       navigaite("/")
     }
   }

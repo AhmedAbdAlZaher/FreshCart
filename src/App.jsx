@@ -10,6 +10,8 @@ import Login from './Components/Login/Login';
 import NotFound from './Components/NotFound/NotFound';
 import Cart from './Components/Cart/Cart';
 import Brands from './Components/Brands/Brands';
+import { useContext, useEffect } from 'react';
+import { tokenContext } from './context/tokenContext';
 
 
 
@@ -34,6 +36,12 @@ let routers = createBrowserRouter([
 
 
 function App() {
+let {setToken} = useContext(tokenContext)
+  useEffect(() => {
+if(localStorage.getItem("userToken")){
+  setToken(localStorage.getItem("userToken"))
+}
+  },[])
   return (
   <RouterProvider router={routers}></RouterProvider>
   )
