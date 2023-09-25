@@ -71,7 +71,7 @@ export default function Login() {
           
         
           {isLoading ? <button type='submit' className="btn bg-main d-block text-white ms-auto"><i className='fa fa-spin fa-spinner'></i></button> 
-          : <button disabled={!(formik.isValid )} type='submit' className="btn bg-main d-block text-white ms-auto">Register</button>}
+          : <button disabled={!(formik.isValid && formik.dirty )} type='submit' className="btn bg-main d-block text-white ms-auto">Login</button>}
 
 
         </form>

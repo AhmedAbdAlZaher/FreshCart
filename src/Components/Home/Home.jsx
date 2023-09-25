@@ -4,8 +4,8 @@ import { tokenContext } from '../../context/tokenContext'
 export default function Home() {
 
   let {token} =useContext(tokenContext)
-  console.log(token)
   
+
   return (
     <div>Home</div>
   )
