@@ -13,6 +13,7 @@ import Brands from './Components/Brands/Brands';
 import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes';
 import { useContext, useEffect } from 'react';
 import { tokenContext } from './context/tokenContext';
+import Details from './Components/Details/Details';
 
 
 
@@ -24,6 +25,7 @@ let routers = createBrowserRouter([
     {path:"Catagories", element: <ProtectedRoutes><Catagories></Catagories></ProtectedRoutes>},
     {path:"brands", element:<ProtectedRoutes><Brands></Brands></ProtectedRoutes>},
     {path:"cart", element:<ProtectedRoutes><Cart></Cart></ProtectedRoutes>},
+    {path:"details/:id", element:<ProtectedRoutes><Details></Details></ProtectedRoutes>},
 
     
     {path:"register", element:<Register></Register>},

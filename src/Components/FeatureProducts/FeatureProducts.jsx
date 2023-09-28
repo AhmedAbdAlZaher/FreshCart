@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styles from "./FeatureProducts.module.css"
 import axios from 'axios'
 import { BallTriangle } from 'react-loader-spinner'
+import { Link } from 'react-router-dom'
+
 import { useQuery } from 'react-query'
+import Details from '../Details/Details'
 
 
 export default function FeatureProducts() {
@@ -48,6 +51,7 @@ function getProduct(){
 
             {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
               <div className="product px-2 py-3">
+                <Link to={"details/" + ele.id}>
                 <img className='w-100' src={ele.imageCover} alt={ele.title} />
                 <p className='text-main'>{ele.category.name}</p>
                 <h3 className='h6'>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>
@@ -59,7 +63,9 @@ function getProduct(){
                   </p>
 
                 </div>
+                </Link>
                 <button className='btn bg-main text-white w-100'>Add to Cart</button>
+
               </div>
             </div>)}
 
