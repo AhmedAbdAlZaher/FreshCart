@@ -10,6 +10,7 @@ import Login from './Components/Login/Login';
 import NotFound from './Components/NotFound/NotFound';
 import Cart from './Components/Cart/Cart';
 import Brands from './Components/Brands/Brands';
+import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes';
 import { useContext, useEffect } from 'react';
 import { tokenContext } from './context/tokenContext';
 
@@ -18,11 +19,13 @@ import { tokenContext } from './context/tokenContext';
 let routers = createBrowserRouter([
   {
   path:"/",element:<Layout></Layout>,children:[
-    {index:true, element:<Home></Home>},
-    {path:"products", element:<Products></Products>},
-    {path:"Catagories", element:<Catagories></Catagories>},
-    {path:"brands", element:<Brands></Brands>},
-    {path:"cart", element:<Cart></Cart>},
+    {index:true, element:  <ProtectedRoutes><Home></Home></ProtectedRoutes>},
+    {path:"products", element:<ProtectedRoutes><Products></Products></ProtectedRoutes>},
+    {path:"Catagories", element: <ProtectedRoutes><Catagories></Catagories></ProtectedRoutes>},
+    {path:"brands", element:<ProtectedRoutes><Brands></Brands></ProtectedRoutes>},
+    {path:"cart", element:<ProtectedRoutes><Cart></Cart></ProtectedRoutes>},
+
+    
     {path:"register", element:<Register></Register>},
     {path:"login", element:<Login></Login>},
 

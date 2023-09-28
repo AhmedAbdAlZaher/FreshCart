@@ -3,6 +3,9 @@ import styles from "./NavBar.module.css"
 import { Link, useNavigate } from 'react-router-dom'
 import logo from "../../Assets/images/freshcart-logo.svg"
 import { tokenContext } from '../../context/tokenContext'
+
+
+
 export default function NavBar() {
 
   let {token , setToken}= useContext(tokenContext);
