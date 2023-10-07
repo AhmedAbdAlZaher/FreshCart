@@ -11,10 +11,6 @@ export default function FeatureProducts() {
 
 
   let { addToCart } = useContext(CartContext)
-
-  console.log(addToCart)
-
-
   function getProduct() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
   }
@@ -41,8 +37,6 @@ export default function FeatureProducts() {
       toast.success('product added successfullly')
     } else {
       toast.error('something went wrong')
-
-
     }
   }
 

@@ -57,3 +57,7 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+
+.main-btn{
+    background-color: var(--main-color);
+}

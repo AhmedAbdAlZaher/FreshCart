@@ -15,10 +15,49 @@ function addToCart(id){
 }).then((res)=>res).catch((err)=>err)
 }
 
+
+
+function getCart(){
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/cart` ,{
+       headers 
+   })
+   .then((res)=>res)
+   .catch((err)=>err)
+   }
+
+   function deleteProductFromCart(id){
+    return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}` ,{
+       headers 
+   })
+   .then((res)=>res)
+   .catch((err)=>err)
+   }
+
+ 
+   function deleteAll(){
+    return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart` ,{
+       headers 
+   })
+   .then((res)=>res)
+   .catch((err)=>err)
+   }
+ 
+
+
+   function updateProductQuantity(id ,count){
+    return axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}` ,{
+        count
+    },{
+       headers 
+   })
+   .then((res)=>res)
+   .catch((err)=>err)
+   }
+
 export default function CartContextProvider(props){
 
 
-return <CartContext.Provider value={{addToCart}}>
+return <CartContext.Provider value={{addToCart , getCart , deleteProductFromCart , updateProductQuantity ,   }}>
 {props.children}
     </CartContext.Provider>
 }
