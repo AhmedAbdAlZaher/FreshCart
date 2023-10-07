@@ -20,18 +20,19 @@ return axios.get(`https://ecommerce.routemisr.com/api/v1/categories`)
   }
 
 let {data} = useQuery("allCatagories" , getCatagories)
-console.log(data)
+
   return (
    <>
-   <div className=' container'>
+   <div className='container'>
    <Slider {...settings}>
-    {data?.data?.data.map((ele)=><>
-    <img  height={250} className='w-100' src={ele.image} alt="" />
-    <h4 className='h3'>{ele.name}</h4>
-    </>)}
+    {data?.data?.data.map((ele)=>
+    <div key={ele._id}>
+    <img height={250} className='w-100' src={ele.image} alt="" />
+    <h4  className='h3'>{ele.name}</h4>
+    </div>
+   )}
    </Slider>
    </div>
-   
    </>
   )
 }

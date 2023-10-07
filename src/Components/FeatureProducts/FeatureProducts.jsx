@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from "./FeatureProducts.module.css"
 import axios from 'axios'
 import { BallTriangle } from 'react-loader-spinner'
 import { Link } from 'react-router-dom'
-
 import { useQuery } from 'react-query'
 import Details from '../Details/Details'
-
-
+import { CartContext } from '../../context/cartContext'
+import toast from 'react-hot-toast'
 export default function FeatureProducts() {
 
 
-function getProduct(){
-  return axios.get("https://ecommerce.routemisr.com/api/v1/products")
-}
+  let { addToCart } = useContext(CartContext)
 
-  let {isLoading,data,isError} = useQuery("FeaturedProducts" , getProduct)
+  console.log(addToCart)
+
+
+  function getProduct() {
+    return axios.get("https://ecommerce.routemisr.com/api/v1/products")
+  }
+
+  let { isLoading, data, isError } = useQuery("FeaturedProducts", getProduct)
 
 
   // let [isLoading, setIsLoading] = useState(true)
@@ -29,6 +33,18 @@ function getProduct(){
   // useEffect(() => {
   //   getProduct()
   // }, [])
+
+
+  async function addCart(id) {
+    let res = await addToCart(id)
+    if (res.data.status == "success") {
+      toast.success('product added successfullly')
+    } else {
+      toast.error('something went wrong')
+
+
+    }
+  }
 
   return (
     <>
@@ -52,19 +68,19 @@ function getProduct(){
             {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
               <div className="product px-2 py-3">
                 <Link to={"details/" + ele.id}>
-                <img className='w-100' src={ele.imageCover} alt={ele.title} />
-                <p className='text-main'>{ele.category.name}</p>
-                <h3 className='h6'>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>
-                <div className="d-flex justify-content-between">
-                  <p>{ele.price} EGP</p>
-                  <p>
-                    <i className='fa fa-star rating-color'></i>
-                    {ele.ratingsAverage}
-                  </p>
+                  <img className='w-100' src={ele.imageCover} alt={ele.title} />
+                  <p className='text-main'>{ele.category.name}</p>
+                  <h3 className='h6'>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>
+                  <div className="d-flex justify-content-between">
+                    <p>{ele.price} EGP</p>
+                    <p>
+                      <i className='fa fa-star rating-color'></i>
+                      {ele.ratingsAverage}
+                    </p>
 
-                </div>
+                  </div>
                 </Link>
-                <button className='btn bg-main text-white w-100'>Add to Cart</button>
+                <button onClick={() => addCart(ele.id)} className='btn bg-main text-white w-100'>Add to Cart</button>
 
               </div>
             </div>)}

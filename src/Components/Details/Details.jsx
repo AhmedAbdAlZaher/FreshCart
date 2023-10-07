@@ -1,10 +1,12 @@
-import React ,{useEffect ,useState} from 'react'
+import React ,{useContext, useEffect ,useState} from 'react'
 import styles from "./Details.module.css"
 import { BallTriangle } from 'react-loader-spinner'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import Slider from 'react-slick'
+import { CartContext } from '../../context/cartContext'
+import toast from 'react-hot-toast'
 
 export default function Details() {
   var settings = {
@@ -33,6 +35,18 @@ useEffect(()=>{
 
   
     // let { data , isLoading,isError,} = useQuery("details",()=>getProductDetails(params.id))
+
+    let { addToCart } = useContext(CartContext)
+    async function addCart(id) {
+      let res = await addToCart(id)
+      if (res.data.status == "success") {
+        toast.success('product added successfullly')
+      } else {
+        toast.error('something went wrong')
+  
+  
+      }
+    }
 
   return (
 <>
@@ -64,7 +78,7 @@ useEffect(()=>{
             <h5>{details.price} EGP</h5>
             <h5><i className='fa fa-star rating-color'></i> {details.ratingsAverage}</h5>
           </div>
-          <button className='btn bg-main text-white w-100'>Add to Cart</button>   
+          <button  onClick={() => addCart(details.id)} className='btn bg-main text-white w-100'>Add to Cart</button>   
            </div>
       </div>
 

@@ -10,12 +10,14 @@ import "./styles.css"
 import CounterContextProvider from './context/countercontext';
 import TokenContextProvider from './context/tokenContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import CartContextProvider from './context/cartContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let query= new QueryClient()
 
 
 root.render(
+    <CartContextProvider>
     <QueryClientProvider client={query}>
     <TokenContextProvider>
         <CounterContextProvider>
@@ -23,5 +25,7 @@ root.render(
         </CounterContextProvider>
   </TokenContextProvider>
   </QueryClientProvider>
+  </CartContextProvider>
+ 
 );
 
