@@ -61,3 +61,22 @@ a , a:hover{
 .main-btn{
     background-color: var(--main-color);
 }
+
+
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+  }
+  
+
+  #lblCartCount {
+      font-size: 12px;
+      background: var(--main-color);
+      color: #fff;
+      padding: 0 5px;
+      vertical-align: top;
+      margin-left: -10px; 
+  }

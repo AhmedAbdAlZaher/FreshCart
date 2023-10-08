@@ -36,11 +36,12 @@ useEffect(()=>{
   
     // let { data , isLoading,isError,} = useQuery("details",()=>getProductDetails(params.id))
 
-    let { addToCart } = useContext(CartContext)
+    let { addToCart , setnumOfCartItems } = useContext(CartContext)
     async function addCart(id) {
       let res = await addToCart(id)
       if (res.data.status == "success") {
         toast.success('product added successfullly')
+        setnumOfCartItems(res.data.numOfCartItems);
       } else {
         toast.error('something went wrong')
   

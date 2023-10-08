@@ -14,6 +14,8 @@ import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes';
 import { useContext, useEffect } from 'react';
 import { tokenContext } from './context/tokenContext';
 import Details from './Components/Details/Details';
+import Cheakout from './Components/Cheakout/Cheakout';
+import AllOrders from './Components/AllOrders/AllOrders';
 
 
 
@@ -26,6 +28,8 @@ let routers = createBrowserRouter([
     {path:"brands", element:<ProtectedRoutes><Brands></Brands></ProtectedRoutes>},
     {path:"cart", element:<ProtectedRoutes><Cart></Cart></ProtectedRoutes>},
     {path:"details/:id", element:<ProtectedRoutes><Details></Details></ProtectedRoutes>},
+    {path:"Cheakout", element:<ProtectedRoutes><Cheakout></Cheakout></ProtectedRoutes>},
+    {path:"allorders", element:<ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes>},
 
     
     {path:"register", element:<Register></Register>},

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export let CartContext = createContext();
 
@@ -14,6 +14,8 @@ function addToCart(id){
     headers 
 }).then((res)=>res).catch((err)=>err)
 }
+
+
 
 
 
@@ -57,7 +59,36 @@ function getCart(){
 export default function CartContextProvider(props){
 
 
-return <CartContext.Provider value={{addToCart , getCart , deleteProductFromCart , updateProductQuantity ,   }}>
+    const[cartId , setCartId] = useState(null)
+    const[numOfCartItems , setnumOfCartItems] = useState(null)
+
+    function onlinePayment(shippingAddress){
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+        {
+            shippingAddress,
+        },
+        {
+           headers,
+       }
+       )
+       .then((res)=>res)
+       .catch((err)=>err)
+       }
+
+async function getInitalCart(){
+    let {data} = await getCart();
+    setnumOfCartItems(data?.numOfCartItems)
+    setCartId(data?.data._id)
+}
+
+
+    useEffect(()=>{
+        getInitalCart();
+    }
+        ,[])
+
+
+return <CartContext.Provider value={{addToCart , getCart , deleteProductFromCart , updateProductQuantity , onlinePayment , numOfCartItems , setnumOfCartItems  }}>
 {props.children}
     </CartContext.Provider>
 }
