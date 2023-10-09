@@ -10,13 +10,13 @@ import toast from 'react-hot-toast'
 export default function FeatureProducts() {
 
 
-  let { addToCart , setnumOfCartItems } = useContext(CartContext)
+  let { addToCart, setnumOfCartItems } = useContext(CartContext)
 
   function getProduct() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
   }
 
-  let { isLoading, data, isError } = useQuery("FeaturedProducts", getProduct)
+  let { isLoading, data, } = useQuery("FeaturedProducts", getProduct)
 
 
   // let [isLoading, setIsLoading] = useState(true)
@@ -43,6 +43,21 @@ export default function FeatureProducts() {
     }
   }
 
+  function hamda(einfo){
+  
+    let search = einfo.target.value;
+    // search.toLowerCase()
+    let mybar = data?.data?.data?.map((ele)=>ele.title)
+    if( search == mybar ){  
+      
+      console.log(mybar)
+    }
+    
+    
+  }
+
+
+
   return (
     <>
       <div className="container py-5">
@@ -60,7 +75,13 @@ export default function FeatureProducts() {
             visible={true}
           />
 
-          : <div className="row">
+          :
+
+
+
+          <div className="row">
+
+            <input onChange={(einfo)=>hamda(einfo)} className='form-control ' placeholder='Search' type="text" ></input>
 
             {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
               <div className="product px-2 py-3">
