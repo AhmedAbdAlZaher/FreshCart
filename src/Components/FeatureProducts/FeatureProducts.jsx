@@ -16,8 +16,8 @@ export default function FeatureProducts() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
   }
 
-  let { isLoading, data, } = useQuery("FeaturedProducts", getProduct)
-
+  let { isLoading, data } = useQuery("FeaturedProducts", getProduct)
+ const [products, setProducts] = useState(null);
 
   // let [isLoading, setIsLoading] = useState(true)
   // let [products, setProducts] = useState([])
@@ -43,19 +43,9 @@ export default function FeatureProducts() {
     }
   }
 
-  function hamda(einfo){
-  
-    let search = einfo.target.value;
-    // search.toLowerCase()
-    let mybar = data?.data?.data?.map((ele)=>ele.title)
-    if( search == mybar ){  
-      
-      console.log(mybar)
-    }
-    
-    
-  }
+ 
 
+ 
 
 
   return (
@@ -81,7 +71,7 @@ export default function FeatureProducts() {
 
           <div className="row">
 
-            <input onChange={(einfo)=>hamda(einfo)} className='form-control ' placeholder='Search' type="text" ></input>
+            <input  className='form-control ' placeholder='Search' type="text" ></input>
 
             {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
               <div className="product px-2 py-3">
