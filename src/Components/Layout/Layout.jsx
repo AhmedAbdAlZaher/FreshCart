@@ -12,7 +12,7 @@ export default function Layout() {
 
 <Outlet></Outlet>
 <Toaster></Toaster>
-<Footer></Footer>
+{/* <Footer></Footer> */}
 
 
 

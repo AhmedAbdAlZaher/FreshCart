@@ -17,7 +17,6 @@ export default function FeatureProducts() {
   }
 
   let { isLoading, data } = useQuery("FeaturedProducts", getProduct)
- const [products, setProducts] = useState(null);
 
   // let [isLoading, setIsLoading] = useState(true)
   // let [products, setProducts] = useState([])
