@@ -23,6 +23,7 @@ export default function Catagories() {
   async function getSubCatagoriesDetails(id) {
     let { data } = await getSubCatagories(id)
     setSubCatagories(data)
+    console.log(subCatagories?.data)
   }
 
   
@@ -60,7 +61,11 @@ export default function Catagories() {
       />}
 
 
+{subCatagories?.data? <div className='contianer'>
 
+  {subCatagories.data.map((ele) => <p>{ele.name}</p>)}
+  
+   </div> : ""} 
 
 
 
