@@ -74,7 +74,7 @@ export default function FeatureProducts() {
 
             {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
               <div className="product px-2 py-3">
-                <Link to={"details/" + ele.id}>
+                <Link onClick={console.log("hello")} >
                   <img className='w-100' src={ele.imageCover} alt={ele.title} />
                   <p className='text-main'>{ele.category.name}</p>
                   <h3 className='h6'>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>

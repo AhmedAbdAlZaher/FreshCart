@@ -11,12 +11,14 @@ import CounterContextProvider from './context/countercontext';
 import TokenContextProvider from './context/tokenContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import CartContextProvider from './context/cartContext';
+import CataContextProvider, { CataContext } from './context/CataContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let query= new QueryClient()
 
 
 root.render(
+    <CataContextProvider>
     <CartContextProvider>
     <QueryClientProvider client={query}>
     <TokenContextProvider>
@@ -26,6 +28,7 @@ root.render(
   </TokenContextProvider>
   </QueryClientProvider>
   </CartContextProvider>
- 
+  </CataContextProvider>
+  
 );
 

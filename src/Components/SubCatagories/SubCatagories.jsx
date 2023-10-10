@@ -1,17 +1,29 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from "./SubCatagories.module.css"
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import { CataContext } from '../../context/CataContext'
 
 
 export default function SubCatagories() {
 
 
-  // function getSubCatagories(id) {
-  //   return axios.get(`https://ecommerce.routemisr.com/api/v1/subcategories/${id}`)
-  // }
+  let {getSubCatagories } = useContext(CataContext)
 
-  // let { isLoading, data } = useQuery("FeaturedProducts", getSubCatagories)
+  const [subCatagories, setSubCatagories] = useState(null)
+
+  async function getSubCatagoriesDetails(id) {
+    let { data } = await getSubCatagories(id)
+    setSubCatagories(data)
+    
+  }
+
+
+
+
+  useEffect(() => {
+    getSubCatagoriesDetails()
+  }, [])
 
 
   return (
