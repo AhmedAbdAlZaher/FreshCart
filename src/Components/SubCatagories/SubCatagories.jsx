@@ -35,7 +35,6 @@ useEffect(()   => {
  <>
      {subCatagories?.data ? 
             <div className='contianer  mb-5'>
-              {/* <p className='h2 text-center py-3 text-main'>{name} subcategories</p> */}
               <div className="row g-3 gy-3 justify-content-center">
                 {subCatagories.data.map((ele) => 
                   <div key={ele._id} className="card col-md-3 mx-3 product text-center">
