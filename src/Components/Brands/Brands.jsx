@@ -76,7 +76,9 @@ function getBrandID (ele){
                   <h2 className='text-main fw-bold'>{oneBrand?.data.name}</h2>
                   <p className='fw-bold'> {oneBrand?.data.name}</p>
                   </div>
-                 <img src={oneBrand?.data.image} alt="" />
+                  <div className="col-md-7">
+                  <img className=' img-fluid' src={oneBrand?.data.image} alt="" />
+                  </div>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
