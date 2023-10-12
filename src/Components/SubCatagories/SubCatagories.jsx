@@ -21,7 +21,10 @@ export default function SubCatagories() {
 
 
 useEffect(()   => {
-  getSubCatagoriesDetails(cataID);
+  if(cataID){
+    getSubCatagoriesDetails(cataID);
+  }
+  
 }, [cataID]);
 
 

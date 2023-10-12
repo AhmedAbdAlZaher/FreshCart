@@ -18,6 +18,12 @@ export default function Catagories() {
     setAllCatagories(data)
   }
 
+
+  function handleCLick(ele){
+    setcataID(ele._id)
+    setname(ele.name)
+      }
+
   useEffect(() => {
     getAllCartDetails()
   }, [])
@@ -27,7 +33,7 @@ export default function Catagories() {
       <div className=' container'>
         {allCatagories?.data ? <div className="row g-4 py-5">
           {allCatagories?.data?.map((ele) => <div key={ele._id} className="col-md-4  text-center">
-            <div className='cursor-pointer' onClick={() =>  setcataID(ele._id)}>
+            <div className='cursor-pointer' onClick={() =>  handleCLick(ele)}>
               <div className="card product">
                 <img src={ele.image} height={300} className="card-img-top" alt="..." />
                 <div className="card-body">
@@ -35,6 +41,7 @@ export default function Catagories() {
                   <p className="card-text text-success fw-bold py-1 h3">{ele.name}</p>
                 </div>
               </div>
+
             </div>
             
           </div>)}
@@ -54,6 +61,9 @@ export default function Catagories() {
 
 
       </div >
+
+                  {name ?  <p className='h2 text-center py-3 text-main'>{name} subcategories</p> : ""}  
+
       <SubCatagories>
 
       </SubCatagories>
