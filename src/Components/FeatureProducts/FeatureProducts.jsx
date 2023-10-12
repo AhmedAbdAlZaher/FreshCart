@@ -42,9 +42,9 @@ export default function FeatureProducts() {
     }
   }
 
- 
 
- 
+
+
 
 
   return (
@@ -70,7 +70,7 @@ export default function FeatureProducts() {
 
           <div className="row">
 
-            <input  className='form-control ' placeholder='Search' type="text" ></input>
+            <input className='form-control ' placeholder='Search' type="text" ></input>
 
             {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
               <div className="product px-2 py-3">
@@ -84,9 +84,12 @@ export default function FeatureProducts() {
                       <i className='fa fa-star rating-color'></i>
                       {ele.ratingsAverage}
                     </p>
-
                   </div>
                 </Link>
+                <p className='text-end' onClick={(einfo)=>console.log(einfo)}>
+                    <i className='fa fa-xl fa-heart'></i>
+                  </p>
+
                 <button onClick={() => addCart(ele.id)} className='btn bg-main text-white w-100'>Add to Cart</button>
 
               </div>

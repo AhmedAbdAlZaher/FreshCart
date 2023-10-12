@@ -19,7 +19,7 @@ export default function Details() {
   }
 let params = useParams()
 
-console.log(params)
+
 
 const [details ,setDetails] =useState({})
 const [isLoading ,setIsLoading] =useState(true)
