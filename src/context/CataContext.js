@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 export let CataContext = createContext();
 
+
 function getAllCatagories() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/categories")
         .then((res) => res)
@@ -17,8 +18,9 @@ function getSubCatagories(id) {
 
 export default function CataContextProvider(props) {
 
+    const[cataID , setcataID] = useState(null)
 
-    return <CataContext.Provider value={{ getAllCatagories, getSubCatagories, }}>
+    return <CataContext.Provider value={{ getAllCatagories, getSubCatagories, cataID , setcataID }}>
 
         {props.children}
 
