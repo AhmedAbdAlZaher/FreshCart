@@ -71,8 +71,12 @@ function getBrandID (ele){
                 <div className="modal-header">
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div className="modal-body">
-                 {oneBrand?.data}
+                <div className="modal-body d-flex justify-content-between align-items-center">
+                  <div className="col-md-2 ps-4">
+                  <h2 className='text-main fw-bold'>{oneBrand?.data.name}</h2>
+                  <p className='fw-bold'> {oneBrand?.data.name}</p>
+                  </div>
+                 <img src={oneBrand?.data.image} alt="" />
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
