@@ -7,6 +7,7 @@ import { useQuery } from 'react-query'
 import Details from '../Details/Details'
 import { CartContext } from '../../context/cartContext'
 import toast from 'react-hot-toast'
+import { wishListContext } from '../../context/wishListContext'
 export default function FeatureProducts() {
 
 
@@ -42,6 +43,21 @@ export default function FeatureProducts() {
     }
   }
 
+// wishlist part
+
+let { addToWishList,  } = useContext(wishListContext)
+
+
+async function addCart(id) {
+  let res = await addToWishList(id)
+  if (res.data.status == "success") {
+    toast.success('product added successfullly');
+    setnumOfCartItems(res.data?.numOfCartItems);
+
+  } else {
+    toast.error('something went wrong')
+  }
+}
 
 
 

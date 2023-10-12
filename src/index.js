@@ -11,24 +11,28 @@ import CounterContextProvider from './context/countercontext';
 import TokenContextProvider from './context/tokenContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import CartContextProvider from './context/cartContext';
+import WishListContextProvider from './context/wishListContext';
+
 import CataContextProvider, { CataContext } from './context/CataContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let query= new QueryClient()
+let query = new QueryClient()
 
 
 root.render(
-    <CataContextProvider>
-    <CartContextProvider>
-    <QueryClientProvider client={query}>
-    <TokenContextProvider>
-        <CounterContextProvider>
-            <App />
-        </CounterContextProvider>
-  </TokenContextProvider>
-  </QueryClientProvider>
-  </CartContextProvider>
-  </CataContextProvider>
-  
+   <WishListContextProvider>
+        <CataContextProvider>
+            <CartContextProvider>
+                <QueryClientProvider client={query}>
+                    <TokenContextProvider>
+                        <CounterContextProvider>
+                            <App />
+                        </CounterContextProvider>
+                    </TokenContextProvider>
+                </QueryClientProvider>
+            </CartContextProvider>
+        </CataContextProvider>
+</WishListContextProvider>
+
 );
 
