@@ -42,6 +42,7 @@ export default function Cart() {
   }
 
 
+
   useEffect(() => {
     getCartDetails()
   }, [])
@@ -81,8 +82,8 @@ export default function Cart() {
                 <button onClick={() => removeitem(ele.product._id)} className='btn text-danger p-0'><i className='fa fa-trash-can'></i> Remove</button>
               </div>
             </div>)}
-
-          <Link className="btn bg-main w-100 text-white mt-5" to={'/Cheakout'}> checkout</Link>
+{cartdetails.numOfCartItems == 0 ? " " :  <Link  className="btn bg-main w-100 text-white mt-5" to={'/Cheakout'}> checkout</Link> }
+         
         </div>
 
 

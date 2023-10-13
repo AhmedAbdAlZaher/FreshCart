@@ -34,7 +34,7 @@ export default function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             { token ?  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              <li className="nav-item ">
                 <Link className="nav-link active" aria-current="page" to={"/"}>Home</Link>
               </li>
               <li className="nav-item">
@@ -43,6 +43,9 @@ export default function NavBar() {
              
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to={"/catagories"}>Catagories</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to={"/wishlist"}>Wishlist</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to={"/brands"}>Brands</Link>
