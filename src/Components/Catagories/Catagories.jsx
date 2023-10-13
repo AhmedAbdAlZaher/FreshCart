@@ -19,6 +19,9 @@ export default function Catagories() {
   }
 
 
+
+  
+
   function handleCLick(ele) {
     setcataID(ele._id)
     setname(ele.name)

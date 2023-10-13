@@ -3,6 +3,7 @@ import styles from "./SubCatagories.module.css"
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import { CataContext } from '../../context/CataContext'
+import { BallTriangle } from 'react-loader-spinner'
 
 
 export default function SubCatagories() {
@@ -17,7 +18,6 @@ export default function SubCatagories() {
     let { data } = await getSubCatagories(id)
     setSubCatagories(data)   
   }
-
 
 
 useEffect(()   => {
@@ -45,7 +45,8 @@ useEffect(()   => {
                 )}
               </div>
             </div>
-            : null}
+            : 
+          null}
  
  </>
   )
