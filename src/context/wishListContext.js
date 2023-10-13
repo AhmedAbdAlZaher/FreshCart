@@ -15,6 +15,16 @@ function addToWishList(id){
    }
    
    
+   function getWishList(){
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist` ,{
+       headers 
+   })
+   .then((res)=>res)
+   .catch((err)=>err)
+   }
+
+
+
 
 export default function WishListContextProvider (props) {  
 

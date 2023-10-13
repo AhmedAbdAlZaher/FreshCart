@@ -48,7 +48,7 @@ export default function FeatureProducts() {
 let { addToWishList,  } = useContext(wishListContext)
 
 
-async function addCart(id) {
+async function addWishList(id) {
   let res = await addToWishList(id)
   if (res.data.status == "success") {
     toast.success('product added successfullly');
@@ -102,7 +102,7 @@ async function addCart(id) {
                     </p>
                   </div>
                 </Link>
-                <p className='text-end' onClick={(einfo)=>console.log(einfo)}>
+                <p className='text-end' onClick={()=>addWishList(ele.id)}>
                     <i className='fa fa-xl fa-heart'></i>
                   </p>
 
