@@ -43,27 +43,33 @@ export default function FeatureProducts() {
     }
   }
 
-// wishlist part
+  // wishlist part
 
-let { addToWishList,  getWishList } = useContext(wishListContext)
-const [allWishList, setAllWishList] = useState(null)
+  let { addToWishList, getWishList } = useContext(wishListContext)
+  const [allWishList, setAllWishList] = useState(null)
 
-async function addWishList(id) {
-  let res = await addToWishList(id)
-  if (res.data.status == "success") {
-    toast.success('product added To WishList');
-  } else {
-    toast.error('something went wrong')
+  async function addWishList(id) {
+    let res = await addToWishList(id)
+    if (res.data.status == "success") {
+      toast.success('product added To WishList');
+    } else {
+      toast.error('something went wrong')
+    }
   }
-}
 
-async function getWishListDetails() {
-  let { data } = await getWishList()
-  setAllWishList(data)
-}
+  async function getWishListDetails() {
+    let { data } = await getWishList()
+    setAllWishList(data)
+  }
 
-useEffect(() => {
-  getWishListDetails()
+
+  const isItemInWishlist = (itemId) => {
+    return allWishList?.data?.some((wish) => wish._id === itemId);
+  };
+
+
+  useEffect(() => {
+    getWishListDetails()
   }, [])
 
 
@@ -107,12 +113,17 @@ useEffect(() => {
                     </p>
                   </div>
                 </Link>
-             
-                <p  className='text-end' onClick={()=>addWishList(ele.id)}>
-                {data?.data?.data?.map((ele) =>(ele.id)) == allWishList?.data.map((ele)=>(ele._id)) ? <i className='fa fa-xl text-danger fa-heart'></i> : <i className='fa fa-xl text-black fa-heart'></i> }
-                   
-                  </p>
-               
+
+                <p className='text-end' onClick={() => addWishList(ele.id)}>
+                  {isItemInWishlist(ele.id) ? (
+                    <i className='fa fa-xl text-danger fa-heart'></i>
+                  ) : (
+                    <i className='fa fa-xl text-black fa-heart'></i>
+                  )}
+
+
+                </p>
+
 
                 <button onClick={() => addCart(ele.id)} className='btn bg-main text-white w-100'>Add to Cart</button>
 

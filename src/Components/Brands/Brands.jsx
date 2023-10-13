@@ -27,7 +27,6 @@ export default function Brands() {
     setOneBrands(data)
   }
 
-console.log(oneBrand)
 
   useEffect(() => {
     getBrands()
