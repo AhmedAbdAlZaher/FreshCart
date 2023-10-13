@@ -45,7 +45,7 @@ export default function FeatureProducts() {
 
   // wishlist part
 
-  let { addToWishList, getWishList } = useContext(wishListContext)
+  let { addToWishList, getWishList, deleteFromWishList } = useContext(wishListContext)
   const [allWishList, setAllWishList] = useState(null)
 
   async function addWishList(id) {
@@ -55,6 +55,7 @@ export default function FeatureProducts() {
     } else {
       toast.error('something went wrong')
     }
+
   }
 
   async function getWishListDetails() {
@@ -62,15 +63,27 @@ export default function FeatureProducts() {
     setAllWishList(data)
   }
 
+  async function removeItemfromWishList(id) {
+    let { data } = await deleteFromWishList(id)
+    getWishListDetails()
+  }
 
   const isItemInWishlist = (itemId) => {
     return allWishList?.data?.some((wish) => wish._id === itemId);
   };
 
+  const toggleWishlistItem = (itemId) => {
+    if (isItemInWishlist(itemId)) {
+      removeItemfromWishList(itemId); // Assuming this removes the item from the wishlist
+    } else {
+      addWishList(itemId); // Assuming this adds the item to the wishlist
+    }
+  };
+
 
   useEffect(() => {
     getWishListDetails()
-  }, [])
+  }, [toggleWishlistItem])
 
 
 
@@ -114,12 +127,12 @@ export default function FeatureProducts() {
                   </div>
                 </Link>
 
-                <p className='text-end' onClick={() => addWishList(ele.id)}>
+                <p className='text-end' onClick={() => toggleWishlistItem(ele.id)}>
                   {isItemInWishlist(ele.id) ? (
                     <i className='fa fa-xl text-danger fa-heart'></i>
-                  ) : (
-                    <i className='fa fa-xl text-black fa-heart'></i>
-                  )}
+                  ) :
+                    (<i className='fa fa-xl text-black fa-heart'></i>)
+                  }
 
 
                 </p>
