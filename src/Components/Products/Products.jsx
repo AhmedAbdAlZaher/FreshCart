@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from "./Products.module.css"
 import { CartContext } from '../../context/cartContext'
 import axios from 'axios'
@@ -17,7 +17,8 @@ export default function Products() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
   }
 
-  let { isLoading, data } = useQuery(["FeaturedProducts", getProduct] )
+  let { isLoading, data } = useQuery("FeaturedProducts", getProduct )
+
 
 
 
@@ -54,7 +55,12 @@ export default function Products() {
   }
 
   async function removeItemfromWishList(id) {
-    let { data } = await deleteFromWishList(id)
+    let res = await deleteFromWishList(id)
+    if (res.data.status == "success") {
+      toast.success('product removed from WishList');
+    } else {
+      toast.error('something went wrong')
+    }
     getWishListDetails()
   }
 
@@ -64,12 +70,16 @@ export default function Products() {
 
   const toggleWishlistItem = (itemId) => {
     if (isItemInWishlist(itemId)) {
-      removeItemfromWishList(itemId); // Assuming this removes the item from the wishlist
+      removeItemfromWishList(itemId); 
     } else {
-      addWishList(itemId); // Assuming this adds the item to the wishlist
+      addWishList(itemId);
     }
   };
 
+
+  useEffect(() => {
+    getWishListDetails()
+  }, [toggleWishlistItem])
 
 
 
@@ -117,16 +127,32 @@ export default function Products() {
                     </div>
                   </Link>
 
+                  {isLoading ?
+
+
+<BallTriangle
+  height={100}
+  width={100}
+  radius={5}
+  z-index={15}
+  color="#4fa94d"
+  ariaLabel="ball-triangle-loading"
+  wrapperClass={'justify-content-center'}
+  wrapperStyle=""
+  visible={true}
+/>
+
+:
                   <p className='text-end' onClick={() => toggleWishlistItem(ele.id)}>
-                    {isItemInWishlist(ele.id) ? (
-                      <i className='fa fa-xl text-danger fa-heart'></i>
-                    ) :
-                      (<i className='fa fa-xl text-black fa-heart'></i>)
-                    }
+                  {isItemInWishlist(ele.id) ? (
+                    <i className='fa fa-xl text-danger fa-heart'></i>
+                  ) :
+                    (<i className='fa fa-xl text-black fa-heart'></i>)
+                  }
 
 
-                  </p>
-
+                </p>
+}
 
                   <button onClick={() => addCart(ele.id)} className='btn bg-main text-white w-100'>Add to Cart</button>
 

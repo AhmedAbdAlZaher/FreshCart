@@ -64,7 +64,12 @@ export default function FeatureProducts() {
   }
 
   async function removeItemfromWishList(id) {
-    let { data } = await deleteFromWishList(id)
+    let res = await deleteFromWishList(id)
+    if (res.data.status == "success") {
+      toast.success('product removed from WishList');
+    } else {
+      toast.error('something went wrong')
+    }
     getWishListDetails()
   }
 
@@ -74,9 +79,9 @@ export default function FeatureProducts() {
 
   const toggleWishlistItem = (itemId) => {
     if (isItemInWishlist(itemId)) {
-      removeItemfromWishList(itemId); // Assuming this removes the item from the wishlist
+      removeItemfromWishList(itemId); 
     } else {
-      addWishList(itemId); // Assuming this adds the item to the wishlist
+      addWishList(itemId);
     }
   };
 
