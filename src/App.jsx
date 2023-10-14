@@ -22,26 +22,25 @@ import Wishlist from './Components/WishList/WishList';
 
 let routers = createBrowserRouter([
   {
-  path:"/",element:<Layout></Layout>,children:[
-    {index:true, element:  <ProtectedRoutes><Home></Home></ProtectedRoutes>},
-    {path:"products", element:<ProtectedRoutes><Products></Products></ProtectedRoutes>},
-    {path:"Catagories", element: <ProtectedRoutes><Catagories></Catagories></ProtectedRoutes>},
-    {path:"brands", element:<ProtectedRoutes><Brands></Brands></ProtectedRoutes>},
-    {path:"cart", element:<ProtectedRoutes><Cart></Cart></ProtectedRoutes>},
-    {path:"details/:id", element:<ProtectedRoutes><Details></Details></ProtectedRoutes>},
-    {path:"Cheakout", element:<ProtectedRoutes><Cheakout></Cheakout></ProtectedRoutes>},
-    {path:"allorders", element:<ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes>},
-    {path:"wishlist", element:<ProtectedRoutes><Wishlist></Wishlist></ProtectedRoutes>},
+    path: "/",
+    element: <Layout></Layout>,
+    children: [
+      { index: true, element: <ProtectedRoutes><Home></Home></ProtectedRoutes> },
+      { path: "products", element: <ProtectedRoutes><Products></Products></ProtectedRoutes> },
+      { path: "Catagories", element: <ProtectedRoutes><Catagories></Catagories></ProtectedRoutes> },
+      { path: "brands", element: <ProtectedRoutes><Brands></Brands></ProtectedRoutes> },
+      { path: "cart", element: <ProtectedRoutes><Cart></Cart></ProtectedRoutes> },
+      { path: "details/:id", element: <ProtectedRoutes><Details></Details></ProtectedRoutes> },
+      { path: "Cheakout", element: <ProtectedRoutes><Cheakout></Cheakout></ProtectedRoutes> },
+      { path: "allorders", element: <ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes> },
+      { path: "wishlist", element: <ProtectedRoutes><Wishlist></Wishlist></ProtectedRoutes> },
+      { path: "register", element: <Register></Register> },
+      { path: "login", element: <Login></Login> },
+      { path: "*", element: <NotFound></NotFound> },
+    ],
+  },
+]);
 
-    
-    {path:"register", element:<Register></Register>},
-    {path:"login", element:<Login></Login>},
-
-    {path:"*", element:<NotFound></NotFound>},
-
-
-  ]}
-])
 
 
 
