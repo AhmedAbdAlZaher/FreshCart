@@ -21,7 +21,7 @@ import Wishlist from './Components/WishList/WishList';
 
 let routers = createHashRouter([
   {
-    path: "", element: <Layout></Layout>, children: [
+    path: "/", element: <Layout></Layout>, children: [
       { index: true, element: <ProtectedRoutes><Home></Home></ProtectedRoutes> },
       { path: "products", element: <ProtectedRoutes><Products></Products></ProtectedRoutes> },
       { path: "Catagories", element: <ProtectedRoutes><Catagories></Catagories></ProtectedRoutes> },
