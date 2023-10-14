@@ -17,7 +17,7 @@ export default function Products() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
   }
 
-  let { isLoading, data } = useQuery("FeaturedProducts", getProduct )
+  let { isLoading, data } = useQuery("FeaturedProducts", getProduct)
 
 
 
@@ -70,7 +70,7 @@ export default function Products() {
 
   const toggleWishlistItem = (itemId) => {
     if (isItemInWishlist(itemId)) {
-      removeItemfromWishList(itemId); 
+      removeItemfromWishList(itemId);
     } else {
       addWishList(itemId);
     }
@@ -87,82 +87,83 @@ export default function Products() {
 
 
 
-    return (
-      <>
-        <div className="container py-5">
-          {isLoading ?
+  return (
+    <>
+      <div className="container py-5">
+        {isLoading ?
 
 
-            <BallTriangle
-              height={100}
-              width={100}
-              radius={5}
-              color="#4fa94d"
-              ariaLabel="ball-triangle-loading"
-              wrapperClass={'justify-content-center'}
-              wrapperStyle=""
-              visible={true}
-            />
+          <BallTriangle
+            height={100}
+            width={100}
+            radius={5}
+            color="#4fa94d"
+            ariaLabel="ball-triangle-loading"
+            wrapperClass={'justify-content-center'}
+            wrapperStyle=""
+            visible={true}
+          />
 
-            :
-
-
-
-            <div className="row">
-
-              <input type="text" className='form-control ' placeholder='Search' ></input>
-
-              {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
-                <div className="product px-2 py-3">
-                  <Link to={`Details/${ele.id}`} >
-                    <img className='w-100' src={ele.imageCover} alt={ele.title} />
-                    <p className='text-main'>{ele.category.name}</p>
-                    <h3 className='h6'>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>
-                    <div className="d-flex justify-content-between">
-                      <p>{ele.price} EGP</p>
-                      <p>
-                        <i className='fa fa-star rating-color'></i>
-                        {ele.ratingsAverage}
-                      </p>
-                    </div>
-                  </Link>
-
-                  {isLoading ?
+          :
 
 
-<BallTriangle
-  height={100}
-  width={100}
-  radius={5}
-  z-index={15}
-  color="#4fa94d"
-  ariaLabel="ball-triangle-loading"
-  wrapperClass={'justify-content-center'}
-  wrapperStyle=""
-  visible={true}
-/>
 
-:
+          <div className="row">
+
+            <input type="text" className='form-control ' placeholder='Search' ></input>
+
+            {data?.data?.data?.map((ele) => <div key={ele.id} className="col-md-2">
+              <div className="product px-2 py-3">
+                <Link to={`Details/${ele.id}`} >
+                  <img className='w-100' src={ele.imageCover} alt={ele.title} />
+                  <p className='text-main'>{ele.category.name}</p>
+                  <h3 className='h6'>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>
+                  <div className="d-flex justify-content-between">
+                    <p>{ele.price} EGP</p>
+                    <p>
+                      <i className='fa fa-star rating-color'></i>
+                      {ele.ratingsAverage}
+                    </p>
+                  </div>
+                </Link>
+
+                {isLoading ?
+
+
+                  <BallTriangle
+                    height={100}
+                    width={100}
+                    radius={5}
+                    z-index={15}
+                    color="#4fa94d"
+                    ariaLabel="ball-triangle-loading"
+                    wrapperClass={'justify-content-center'}
+                    wrapperStyle=""
+                    visible={true}
+                  />
+
+                  :
                   <p className='text-end' onClick={() => toggleWishlistItem(ele.id)}>
-                  {isItemInWishlist(ele.id) ? (
-                    <i className='fa fa-xl text-danger fa-heart'></i>
-                  ) :
-                    (<i className='fa fa-xl text-black fa-heart'></i>)
-                  }
+                    {isItemInWishlist(ele.id) ? (
+                      <i className='fa fa-xl text-danger fa-heart'></i>
+                    ) :
+                      (<i className='fa fa-xl text-black fa-heart'></i>)
+                    }
 
 
-                </p>
+                  </p>
+                }
+
+                <button onClick={() => addCart(ele.id)} className='btn bg-main text-white w-100'>Add to Cart</button>
+
+              </div>
+            </div>)}
+
+          </div>}
+
+      </div >
+
+    </>
+
+  )
 }
-
-                  <button onClick={() => addCart(ele.id)} className='btn bg-main text-white w-100'>Add to Cart</button>
-
-                </div>
-              </div>)}
-
-            </div>}
-
-        </div >
-
-      </>
-
-)}
