@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './Components/Home/Home';
 import Layout from './Components/Layout/Layout';
-import {  BrowserRouter, RouterProvider, createHashRouter } from 'react-router-dom';
+import {  BrowserRouter, RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom';
 import Products from './Components/Products/Products';
 import Catagories from './Components/Catagories/Catagories';
 import Register from './Components/Register/Register';
