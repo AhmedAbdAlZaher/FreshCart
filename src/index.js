@@ -14,12 +14,14 @@ import CartContextProvider from './context/cartContext';
 import WishListContextProvider from './context/wishListContext';
 
 import CataContextProvider, { CataContext } from './context/CataContext';
+import AllordersContextProvider from './context/allorderContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let query = new QueryClient()
 
 
 root.render(
+    <AllordersContextProvider>
    <WishListContextProvider>
         <CataContextProvider>
             <CartContextProvider>
@@ -33,6 +35,7 @@ root.render(
             </CartContextProvider>
         </CataContextProvider>
 </WishListContextProvider>
+</AllordersContextProvider>
 
 );
 
