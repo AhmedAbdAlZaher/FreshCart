@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
-import { isExpired, decodeToken } from "react-jwt";
+import { decodeToken } from "react-jwt";
 export let CartContext = createContext();
 
 let headers = {
@@ -59,20 +59,31 @@ function updateProductQuantity(id, count) {
 
 let token = localStorage.getItem("userToken")
 
-
-
-
-
 export default function CartContextProvider(props) {
 
-    const myDecodedToken = decodeToken(token);
-    console.log(myDecodedToken.id)
+
+    const { decodedToken, isExpired } = useJwt(token);
+
+    let {id} = decodeToken(token)
+
+    console.log(id)
+
+    function getuserorders() {
+        return axios.put(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
+            {
+                headers
+            })
+            .then((res) => res)
+            .catch((err) => err)
+    }    
+
 
     const [cartId, setCartId] = useState(null)
     const [numOfCartItems, setnumOfCartItems] = useState(null)
-    console.log(cartId)
+
+
     function onlinePayment(shippingAddress) {
-        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000/${myDecodedToken.id}`,
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000/allorders/`,
             {
                 shippingAddress,
             },
@@ -90,14 +101,13 @@ export default function CartContextProvider(props) {
         setCartId(data?.data._id)
     }
 
-
     useEffect(() => {
         getInitalCart();
     }
         , [])
 
 
-    return <CartContext.Provider value={{ addToCart, getCart, deleteProductFromCart, updateProductQuantity, onlinePayment, numOfCartItems, setnumOfCartItems }}>
+    return <CartContext.Provider value={{ addToCart, getCart, deleteProductFromCart, updateProductQuantity, onlinePayment, numOfCartItems, setnumOfCartItems, getuserorders, }}>
         {props.children}
     </CartContext.Provider>
 }

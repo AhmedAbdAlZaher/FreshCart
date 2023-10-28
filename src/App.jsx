@@ -28,7 +28,7 @@ let routers = createBrowserRouter ([
       { path: "cart", element: <ProtectedRoutes><Cart></Cart></ProtectedRoutes> },
       { path: "details/:id", element: <ProtectedRoutes><Details></Details></ProtectedRoutes> },
       { path: "Cheakout", element: <ProtectedRoutes><Cheakout></Cheakout></ProtectedRoutes> },
-      { path: "allorders", element: <ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes> },
+      { path: "allorders/:id", element: <ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes> },
       { path: "wishlist", element: <ProtectedRoutes><Wishlist></Wishlist></ProtectedRoutes> },
 
 
