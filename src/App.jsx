@@ -15,7 +15,7 @@ import { tokenContext } from './context/tokenContext';
 import Details from './Components/Details/Details';
 import Cheakout from './Components/Cheakout/Cheakout';
 import AllOrders from './Components/AllOrders/AllOrders';
-import Wishlist from './Components/wishlist/wishlist';
+import Wishlist from './Components/WishList/WishList';
 
 
 let routers = createBrowserRouter ([
@@ -28,7 +28,7 @@ let routers = createBrowserRouter ([
       { path: "cart", element: <ProtectedRoutes><Cart></Cart></ProtectedRoutes> },
       { path: "details/:id", element: <ProtectedRoutes><Details></Details></ProtectedRoutes> },
       { path: "Cheakout", element: <ProtectedRoutes><Cheakout></Cheakout></ProtectedRoutes> },
-      { path: "allorders/:id", element: <ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes> },
+      { path: "allorders", element: <ProtectedRoutes><AllOrders></AllOrders></ProtectedRoutes> },
       { path: "wishlist", element: <ProtectedRoutes><Wishlist></Wishlist></ProtectedRoutes> },
 
 

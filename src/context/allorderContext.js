@@ -1,18 +1,29 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
-import { useJwt } from "react-jwt";
+import React, { createContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 export let AllordersContext = createContext();
-export default function AllordersContextProvider (props) { 
-    // let data = localStorage.getItem("userToken")
+
+let headers = {
+    token: localStorage.getItem("userToken")
+}
+
+export default function AllordersContextProvider(props) {
+    const data = localStorage.getItem("userToken");
+    const { id } = jwtDecode(data);
+
+    console.log(id);
+
+    function getuserorders() {
+        return axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
+            {
+                headers
+            })
+            .then((res) => res)
+            .catch((err) => err)
+    }
 
 
-    // const { decodedToken, isExpired } = useJwt(data);
-
-
-
-// console.log(decodedToken)
-
-    return<AllordersContext.Provider>
+    return <AllordersContext.Provider value={{ getuserorders }}>
         {props.children}
     </AllordersContext.Provider>
 }
