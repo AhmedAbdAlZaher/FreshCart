@@ -22,21 +22,36 @@ export default function AllOrders() {
 
   return (
     <>
-      {userorders ? <div className=' container'>
+      {userorders ? <div className=' container my-5'>
         <div className='bg-success p-5 my-5 text-center text-white'>
-          <h2>Congrats</h2>
+          <h2>Orders History</h2>
         </div>
-        {userorders.map((ele)=>
-        <div>
-          <h3>shipping Address :{ele.shippingAddress.details}</h3>
-          <h4>phone: {ele.shippingAddress.phone}</h4>
-          <h4>city: {ele.shippingAddress.city}</h4>
-          <div>
-            <h2>total order Price{ele.totalOrderPrice} EGP</h2>
-            <h3>title{ele.cartItems[0].product.title}</h3>
-            <img src={ele.cartItems[0].product.imageCover} alt="" />
-          </div>
-        </div>)}
+        {userorders.map((ele) =>
+          <div className='row py-2 border-bottom bg-main-light'>
+            <div className='col-md-11'>
+              <div className='d-flex justify-content-between'>
+                <div className="left-side">
+                  <h4>Shipping Address :{ele.shippingAddress.details}</h4>
+                  <h4>Phone : {ele.shippingAddress.phone}</h4>
+                  <h4>City : {ele.shippingAddress.city}</h4>
+                  <h4>Total Order Price : <span className=' text-main'>{ele.totalOrderPrice}</span> EGP</h4>
+                  <h4 className='text-main'>Product : {ele.cartItems[0].product.title.split(" ").slice(0, 3).join(" ")}</h4>
+                </div>
+                <div className='col-md-1 mt-4'>
+                <div className='right-side'>
+                <img className='w-100' src={ele.cartItems[0].product.imageCover} alt="" />
+                </div>
+              </div>
+             
+              </div>
+            </div>
+
+            <div className=''>
+          
+            
+
+            </div>
+          </div>)}
       </div>
 
 
