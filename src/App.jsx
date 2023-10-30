@@ -18,7 +18,7 @@ import AllOrders from './Components/AllOrders/AllOrders';
 import Wishlist from './Components/WishList/WishList';
 
 
-let routers = createBrowserRouter ([
+let routers = createHashRouter ([
   {
     path: "/", element: <Layout></Layout>, children: [
       { index: true, element: <ProtectedRoutes><Home></Home></ProtectedRoutes> },
