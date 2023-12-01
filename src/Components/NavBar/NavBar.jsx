@@ -26,9 +26,12 @@ export default function NavBar() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
-          <Link className="navbar-brand" href="#">
-            <img src={logo} alt="" />
-          </Link>
+        <div className="d-flex align-items-center"> {/* Use d-flex and align-items-center to horizontally align logo and search icon */}
+      <Link className="navbar-brand">
+        <img src={logoImg} alt="" width={'199px'} height={'60px'} />
+      </Link>
+      <i className='fa fa-search ml-auto'></i> {/* Move the search icon here and use ml-auto for left margin */}
+    </div>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
