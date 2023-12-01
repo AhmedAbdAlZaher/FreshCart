@@ -1,9 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useJwt } from "react-jwt";
-import { decodeToken } from "react-jwt";
 export let CartContext = createContext();
-
 let headers = {
     token: localStorage.getItem("userToken")
 }
@@ -62,28 +59,13 @@ let token = localStorage.getItem("userToken")
 export default function CartContextProvider(props) {
 
 
-    const { decodedToken, isExpired } = useJwt(token);
-
-    let {id} = decodeToken(token)
-
-    console.log(id)
-
-    function getuserorders() {
-        return axios.put(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
-            {
-                headers
-            })
-            .then((res) => res)
-            .catch((err) => err)
-    }    
-
 
     const [cartId, setCartId] = useState(null)
     const [numOfCartItems, setnumOfCartItems] = useState(null)
 
 
     function onlinePayment(shippingAddress) {
-        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000/allorders/`,
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://AhmedAbdAlZaher.github.io/#/`,
             {
                 shippingAddress,
             },
@@ -107,7 +89,7 @@ export default function CartContextProvider(props) {
         , [])
 
 
-    return <CartContext.Provider value={{ addToCart, getCart, deleteProductFromCart, updateProductQuantity, onlinePayment, numOfCartItems, setnumOfCartItems, getuserorders, }}>
+    return <CartContext.Provider value={{ addToCart, getCart, deleteProductFromCart, updateProductQuantity, onlinePayment, numOfCartItems, setnumOfCartItems, }}>
         {props.children}
     </CartContext.Provider>
 }
