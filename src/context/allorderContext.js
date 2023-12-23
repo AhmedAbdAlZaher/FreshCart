@@ -9,9 +9,7 @@ let headers = {
 
 export default function AllordersContextProvider(props) {
     const data = localStorage.getItem("userToken");
-    const { id } = jwtDecode(data);
-
-    console.log(id);
+    const { id } = data ? jwtDecode(data) : {};
 
     function getuserorders() {
         return axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
