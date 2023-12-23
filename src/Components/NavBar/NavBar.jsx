@@ -28,7 +28,7 @@ export default function NavBar() {
         <div className="container">
         <div className="d-flex align-items-center"> {/* Use d-flex and align-items-center to horizontally align logo and search icon */}
       <Link className="navbar-brand">
-        <img src={logoImg} alt="" width={'199px'} height={'60px'} />
+        <img src={logo} alt="" width={'199px'} height={'60px'} />
       </Link>
       <i className='fa fa-search ml-auto'></i> {/* Move the search icon here and use ml-auto for left margin */}
     </div>
