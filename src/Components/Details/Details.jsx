@@ -33,7 +33,7 @@ const [isLoading ,setIsLoading] =useState(true)
   
 useEffect(()=>{
   getProductDetails(params.id)
-} ,[])
+} ,[])  
 
   
     // let { data , isLoading,isError,} = useQuery("details",()=>getProductDetails(params.id))
