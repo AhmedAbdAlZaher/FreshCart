@@ -15,7 +15,7 @@ import { tokenContext } from './context/tokenContext';
 import Details from './Components/Details/Details';
 import Cheakout from './Components/Cheakout/Cheakout';
 import AllOrders from './Components/AllOrders/AllOrders';
-import Wishlist from './Components/wishlist/wishlist';
+import Wishlist from './Components/wishList/WishList';
 
 
 let routers = createHashRouter ([
